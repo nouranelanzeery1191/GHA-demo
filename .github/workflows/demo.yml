@@ -36,8 +36,9 @@ jobs:
           ls -al $PWD/.github/workflows
       - name: using a script
         run: |
-          chmod +x ../../code/central-scripts/gha.sh
-          sh ../../code/central-scripts/gha.sh
+          pwd
+          chmod +x ./code/central-scripts/gha.sh
+          sh ./code/central-scripts/gha.sh
 
   # node-version:
   #   strategy: 
