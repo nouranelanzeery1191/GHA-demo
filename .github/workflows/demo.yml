@@ -1,40 +1,66 @@
 # Wokflow name to be displayed in GitHub Actions page
-name: Matrix
+name: GitHubActionsDemo
 
 # GtHub event
-on: push
+on: 
+  push
+#   branches:
+#     - main
+#     - feature
+#   branches-ignore:
+#     - develop
+# pull_request:
+#   types: [ closed, labeled ]
+#   branches:
+#     - main
 
 # jobs
 jobs:
-  node-version:
-    strategy: 
-      matrix: 
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        node_version: ["6","8","10"]
-        include:
-          - os: ubuntu-latest
-            node_version: 8
-            is_ubuntu_8: "true"
-        exclude:
-          - os: ubuntu-latest
-            node_version: 6
-          - os: macos-latest
-            node_version: 8
-      #max-parallel: 2
-      #fail-fast: true
-    runs-on: ${{ matrix.os }}
-    env:
-      is_ubuntu_8: ${{ matrix.is_ubuntu_8}}
+  job1:
+    runs-on: ubuntu-latest
     steps:
-      - name: Log node version
-        run: node -v
-      - uses: actions/setup-node@v1
-        with: 
-          node-version: ${{ matrix.node_version}}
-      - name: Log node version After performing a version change
-        run: node -v
-      - name: Print Specs
+      - name: test code
         run: |
-          echo "Current OS version: ${{ matrix.os }}"
-          echo "Current Node version: ${{ matrix.node_version }}"
-          echo $is_ubuntu_8
+           echo "Hello"
+           echo "World"
+           echo "!"
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: using a script
+        run: |
+          chmod +x ../code/central-scrpits/gha.sh
+          sh ../code/central-scrpits/gha.sh
+
+  # node-version:
+  #   strategy: 
+  #     matrix: 
+  #       os: [macos-latest, ubuntu-latest, windows-latest]
+  #       node_version: ["6","8","10"]
+  #       include:
+  #         - os: ubuntu-latest
+  #           node_version: 8
+  #           is_ubuntu_8: "true"
+  #       exclude:
+  #         - os: ubuntu-latest
+  #           node_version: 6
+  #         - os: macos-latest
+  #           node_version: 8
+  #     #max-parallel: 2
+  #     #fail-fast: true
+  #   runs-on: ${{ matrix.os }}
+  #   env:
+  #     is_ubuntu_8: ${{ matrix.is_ubuntu_8}}
+  #   steps:
+  #     - name: Log node version
+  #       run: node -v
+  #     - uses: actions/setup-node@v1
+  #       with: 
+  #         node-version: ${{ matrix.node_version}}
+  #     - name: Log node version After performing a version change
+  #       run: node -v
+  #     - name: Print Specs
+  #       run: |
+  #         echo "Current OS version: ${{ matrix.os }}"
+  #         echo "Current Node version: ${{ matrix.node_version }}"
+  #         echo $is_ubuntu_8
