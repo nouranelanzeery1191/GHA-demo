@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: ${{ matrix.microservices }}.${{ matrix.env }}
         run: |
-           echo "Hello ${{ github.input.environment }}"
+           echo "Hello ${{ github.event.inputs.environment }}"
            echo "${{ matrix.microservices }}" on ${{ matrix.env }}
            echo "!"
 
