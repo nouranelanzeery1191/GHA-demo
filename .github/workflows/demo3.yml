@@ -1,0 +1,45 @@
+  # Wokflow name to be displayed in GitHub Actions page
+name: ManualApproval
+
+# GtHub event
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to manually run this workflow on
+        required: true
+        default: 'dev'
+        options:
+          - dev
+          - test
+          - pre-prod
+# jobs
+jobs:
+  job1:
+    envronment: 'dev'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        microservices: [
+          "svc-1",
+          "svc-2"
+        ]
+    steps:
+      - name: test code
+        run: |
+           echo "Hello"
+           echo "${{ matrix.microservices }}"
+           echo "!"
+           if [[ ${{ secrets.ENV }} == "dev" ]]
+           then
+             echo " secret func is working "
+           else
+             echo " secret func is NOT working "
+  approve:
+    runs-on: ubuntu-latest
+    needs: [ job1 ]
+    environment: pre-prod
+    steps:
+      - name: Waiting for approval
+        run: |
+          echo "Waiting for manual approval"
