@@ -21,4 +21,4 @@ jobs:
     steps:
       - name: Waiting for approval
         run: |
-          echo "Job is deployed based on a manual approval"
+          echo "test Job is deployed based on a manual approval"
