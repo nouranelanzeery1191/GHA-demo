@@ -27,9 +27,6 @@ jobs:
     steps:
       - name: test code
         run: |
-           echo "Hello"
-           echo "${{ matrix.microservices }}"
-           echo "!"
            if [[ ${{ secrets.ENV }} == "dev" ]]
            then
              echo " secret func is working "
