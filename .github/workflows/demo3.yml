@@ -8,6 +8,7 @@ on:
       environment:
         description: Environment to manually run this workflow on
         required: true
+        type: choice
         default: 'dev'
         options:
           - dev
