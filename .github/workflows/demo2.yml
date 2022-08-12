@@ -31,7 +31,7 @@ jobs:
       - name: ${{ matrix.microservices }}.${{ matrix.env }}
         run: |
            echo "Hello"
-           echo "${{ matrix.microservices }}"
+           echo "${{ matrix.microservices }}" on ${{ matrix.env }}
            echo "!"
 
   # node-version:

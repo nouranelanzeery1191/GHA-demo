@@ -16,7 +16,7 @@ on:
 # jobs
 jobs:
   job1:
-    envronment: 'dev'
+    environment: 'dev'
     runs-on: ubuntu-latest
     strategy:
       matrix:
