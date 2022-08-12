@@ -1,0 +1,31 @@
+  # Wokflow name to be displayed in GitHub Actions page
+name: WorkflowDispatch
+
+env:
+  target_environment: ${{ github.event.inputs.environment }}
+# GtHub event
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to manually run this workflow on
+        required: true
+        type: choice
+        default: 'dev'
+        options:
+          - dev
+          - test
+          - pre-prod
+  push:
+    branches:
+      - 'main'
+# jobs
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ${{ matrix.microservices }}.${{ matrix.env }}
+        run: |
+           echo "Environment selected is ${{ github.event.inputs.environment }}"
+           echo "!"
+  
