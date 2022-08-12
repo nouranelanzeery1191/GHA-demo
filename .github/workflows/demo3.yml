@@ -16,9 +16,6 @@ on:
           - dev
           - test
           - pre-prod
-  push:
-    branches:
-      - 'main'
 # jobs
 jobs:
   job1:

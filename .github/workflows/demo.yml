@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: test code
         run: |
-           echo "Hello"
+           echo " tets Hello"
            echo "World"
            echo "!"
   job2:
