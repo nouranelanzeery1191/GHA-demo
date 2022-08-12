@@ -11,8 +11,6 @@ on:
 #     - develop
 # pull_request:
 #   types: [ closed, labeled ]
-#   branches:
-#     - main
 
 # jobs
 jobs:
@@ -33,9 +31,7 @@ jobs:
         run: |
           pwd
           ls -al
-          ls -al $PWD/.github/workflows
       - name: using a script
         run: |
-          pwd
           chmod +x ./code/central-scripts/gha.sh
           sh ./code/central-scripts/gha.sh

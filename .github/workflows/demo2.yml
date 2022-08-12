@@ -1,13 +1,8 @@
   # Wokflow name to be displayed in GitHub Actions page
 name: MatrixStrategy
 
-env:
-  target_environment: ${{ github.event.inputs.environment }}
 # GtHub event
-on: 
-  push:
-    branches:
-      - 'main'
+on: push
 # jobs
 jobs:
   job1:
@@ -19,42 +14,7 @@ jobs:
     steps:
       - name: ${{ matrix.microservices }}.${{ matrix.env }}
         run: |
-           echo "Hello ${{ github.event.inputs.environment }}"
            echo "${{ matrix.microservices }}" on ${{ matrix.env }}
-           echo "!"
-
-  # node-version:
-  #   strategy: 
-  #     matrix: 
-  #       os: [macos-latest, ubuntu-latest, windows-latest]
-  #       node_version: ["6","8","10"]
-  #       include:
-  #         - os: ubuntu-latest
-  #           node_version: 8
-  #           is_ubuntu_8: "true"
-  #       exclude:
-  #         - os: ubuntu-latest
-  #           node_version: 6
-  #         - os: macos-latest
-  #           node_version: 8
-  #     #max-parallel: 2
-  #     #fail-fast: true
-  #   runs-on: ${{ matrix.os }}
-  #   env:
-  #     is_ubuntu_8: ${{ matrix.is_ubuntu_8}}
-  #   steps:
-  #     - name: Log node version
-  #       run: node -v
-  #     - uses: actions/setup-node@v1
-  #       with: 
-  #         node-version: ${{ matrix.node_version}}
-  #     - name: Log node version After performing a version change
-  #       run: node -v
-  #     - name: Print Specs
-  #       run: |
-  #         echo "Current OS version: ${{ matrix.os }}"
-  #         echo "Current Node version: ${{ matrix.node_version }}"
-  #         echo $is_ubuntu_8
 
   
   
