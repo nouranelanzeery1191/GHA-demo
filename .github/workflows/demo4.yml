@@ -1,31 +1,24 @@
   # Wokflow name to be displayed in GitHub Actions page
-name: WorkflowDispatch
+name: ManualApproval
 
-env:
-  target_environment: ${{ github.event.inputs.environment }}
 # GtHub event
-on: 
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: Environment to manually run this workflow on
-        required: true
-        type: choice
-        default: 'dev'
-        options:
-          - dev
-          - test
-          - pre-prod
-  push:
-    branches:
-      - 'main'
+on: push
 # jobs
 jobs:
   job1:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        microservices: ["svc-1","svc-2"]
     steps:
-      - name: ${{ matrix.microservices }}.${{ matrix.env }}
+      - name: test code
         run: |
-           echo "Environment selected is ${{ github.event.inputs.environment }}"
-           echo "!"
-  
+          echo "hello world!"
+  approve:
+    runs-on: ubuntu-latest
+    needs: [ job1 ]
+    environment: pre-prod
+    steps:
+      - name: Waiting for approval
+        run: |
+          echo "Waiting for manual approval"
