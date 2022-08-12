@@ -27,11 +27,18 @@ jobs:
   job2:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: List Files After Checkout
+        run: |
+          pwd
+          ls -al
+          ls -al $PWD/.github/workflows
       - name: using a script
         run: |
           pwd
-          chmod +x ./code/central-scrpits/gha.sh
-          sh ./code/central-scrpits/gha.sh
+          chmod +x ../code/central-scrpits/gha.sh
+          sh ../code/central-scrpits/gha.sh
 
   # node-version:
   #   strategy: 
