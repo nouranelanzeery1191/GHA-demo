@@ -37,8 +37,8 @@ jobs:
       - name: using a script
         run: |
           pwd
-          chmod +x ../code/central-scrpits/gha.sh
-          sh ../code/central-scrpits/gha.sh
+          chmod +x ./code/central-scrpits/gha.sh
+          sh ./code/central-scrpits/gha.sh
 
   # node-version:
   #   strategy: 
