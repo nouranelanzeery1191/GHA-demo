@@ -29,6 +29,7 @@ jobs:
     steps:
       - name: using a script
         run: |
+          pwd
           chmod +x ../code/central-scrpits/gha.sh
           sh ../code/central-scrpits/gha.sh
 
